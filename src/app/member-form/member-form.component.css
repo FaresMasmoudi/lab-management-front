@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+mat-form-field {
+  width: 80%;
+  white-space: pre-wrap;
+}
+
+legend {
+  color: blue;
+  font-size: medium;
+}
