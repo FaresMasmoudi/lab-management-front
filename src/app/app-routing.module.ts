@@ -7,6 +7,7 @@ import {EventComponent} from "./event/event.component";
 import {ToolsComponent} from "./tools/tools.component";
 import {ArticleComponent} from "./article/article.component";
 import {LoginComponent} from "./login/login.component";
+import {ArticleFormComponent} from "./article-form/article-form.component";
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'create',
+    path: 'createMember',
     pathMatch: 'full', //matching complet
     component: MemberFormComponent
   },
@@ -57,7 +58,13 @@ const routes: Routes = [
     path: 'articles',
     pathMatch: 'full',
     component: ArticleComponent
-  }
+  },
+  {
+    path: 'createArticle',
+    pathMatch: 'full', //matching complet
+    component: ArticleFormComponent
+  },
+
 ];
 
 @NgModule({

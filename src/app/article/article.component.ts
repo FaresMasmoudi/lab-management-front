@@ -9,6 +9,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort, Sort} from "@angular/material/sort";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
 import {ArticleFormComponent} from "../article-form/article-form.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-article',
@@ -27,7 +28,7 @@ export class ArticleComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  constructor(private articleService: ArticleService, private dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer){
+  constructor(private articleService: ArticleService, private dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer, private router: Router){
 
   }
 
@@ -73,17 +74,14 @@ export class ArticleComponent implements AfterViewInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      id: 1,
+      type: "scientifique",
       title: 'Angular For Beginners'
     };
-
-    this.dialog.open(ArticleFormComponent, dialogConfig);
 
     const dialogRef = this.dialog.open(ArticleFormComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-      data => console.log("Dialog output:", data)
+      data => this.articleService.onSave(data)
     );
   }
 }
-
