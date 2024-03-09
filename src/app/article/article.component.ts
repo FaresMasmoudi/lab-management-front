@@ -1,11 +1,14 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 import {GLOBAL} from "../app-config";
 import {MatTableDataSource} from "@angular/material/table";
 import {Article} from "../../models/article";
 import {MatPaginator} from "@angular/material/paginator";
+import {MatSort, Sort} from "@angular/material/sort";
+import {LiveAnnouncer} from "@angular/cdk/a11y";
+import {ArticleFormComponent} from "../article-form/article-form.component";
 
 @Component({
   selector: 'app-article',
@@ -18,11 +21,13 @@ export class ArticleComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<any>(this.articleService.tab);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
-  constructor(private articleService: ArticleService, private dialog: MatDialog){
+  constructor(private articleService: ArticleService, private dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer){
 
   }
 
@@ -47,6 +52,38 @@ export class ArticleComponent implements AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  announceSortChange(sortState: Sort) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      id: 1,
+      title: 'Angular For Beginners'
+    };
+
+    this.dialog.open(ArticleFormComponent, dialogConfig);
+
+    const dialogRef = this.dialog.open(ArticleFormComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => console.log("Dialog output:", data)
+    );
   }
 }
 

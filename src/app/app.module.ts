@@ -28,6 +28,8 @@ import {FirebaseModule} from "./Firebase.module";
 import { LoginComponent } from './login/login.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
+import { ArticleFormComponent } from './article-form/article-form.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     ToolsComponent,
     ArticleComponent,
     EventComponent,
-    LoginComponent
+    LoginComponent,
+    ArticleFormComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatMenuModule,
     FirebaseModule,
     MatCardModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
