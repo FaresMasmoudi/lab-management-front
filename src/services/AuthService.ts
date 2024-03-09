@@ -59,14 +59,6 @@ export class AuthService {
         return this.afAuth.signInWithPopup(new auth.GoogleAuthProvider());
     }
 
-    
-
-
-
-
-
-    
-
     doLogout(): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             if (!!this.afAuth.currentUser) {
@@ -81,4 +73,3 @@ export class AuthService {
     }
 
 }
- 
