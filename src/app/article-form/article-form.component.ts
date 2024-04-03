@@ -49,7 +49,7 @@ export class ArticleFormComponent implements OnInit{
       titre: new FormControl(null, [Validators.required]),
     })
   }
-
+/*
   onSubmit() {
 
     if(!!this.idCourant)
@@ -66,6 +66,8 @@ export class ArticleFormComponent implements OnInit{
       })
     }
   }
+  */
+
 
   private editForm(a: Article) {
     this.form = new FormGroup({

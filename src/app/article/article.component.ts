@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
@@ -18,21 +18,29 @@ import {Router} from "@angular/router";
 })
 export class ArticleComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'type', 'titre', 'createdDate'];
-  dataSource = new MatTableDataSource<any>(this.articleService.tab);
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  displayedColumns: string[] = ['id', 'type', 'titre', 'createdDate'];
+  dataSource = new MatTableDataSource<any>();
+  tabArticles:Article[]= [];
+  getAllData(){
+    this.articleService.getArticles().subscribe((data) => {
+      this.tabArticles = data;
+      this.dataSource.data = this.tabArticles;
+    });
+  }
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.getAllData();
   }
+
   constructor(private articleService: ArticleService, private dialog: MatDialog, private _liveAnnouncer: LiveAnnouncer, private router: Router){
 
   }
-
-  protected readonly GLOBAL = GLOBAL;
 
   delete(id:string) {
     // 1 ouvrir la boite de dialogue
@@ -46,7 +54,7 @@ export class ArticleComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result)
         this.articleService.onDelete(id).subscribe(() => {
-          this.dataSource = new MatTableDataSource<any>(this.articleService.tab);
+          this.dataSource = new MatTableDataSource<any>(this.articleService.tab_articles);
         })
     });
   }
@@ -77,11 +85,14 @@ export class ArticleComponent implements AfterViewInit {
       type: "scientifique",
       title: 'Angular For Beginners'
     };
-
+/*
     const dialogRef = this.dialog.open(ArticleFormComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
       data => this.articleService.onSave(data)
     );
+
+ */
   }
+
 }
