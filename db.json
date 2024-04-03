@@ -153,6 +153,69 @@
       "type": "paper",
       "titre": "Generic Scientific Article 20",
       "createdDate": "08/26/2023"
+    },
+    {
+      "id": 9,
+      "type": null,
+      "titre": null,
+      "date": null,
+      "lien": null,
+      "auteur": null,
+      "createdDate": "2024-04-03T12:04:39.748Z"
+    },
+    {
+      "id": 631,
+      "type": null,
+      "titre": null,
+      "date": null,
+      "lien": null,
+      "auteur": null,
+      "createdDate": "2024-04-03T12:05:21.314Z"
+    },
+    {
+      "id": 293,
+      "type": null,
+      "titre": null,
+      "date": null,
+      "lien": null,
+      "auteur": null,
+      "createdDate": "2024-04-03T12:05:24.823Z"
+    },
+    {
+      "id": 676,
+      "type": "fsdfsdf",
+      "titre": "qdsfsdf",
+      "date": null,
+      "lien": null,
+      "auteur": null,
+      "createdDate": "2024-04-03T12:20:43.813Z"
+    },
+    {
+      "id": 173,
+      "type": "qsdfqsùd",
+      "titre": "ùmkljmlkj",
+      "date": "2024-04-02T23:00:00.000Z",
+      "lien": null,
+      "auteur": null,
+      "createdDate": "2024-04-03T12:23:25.362Z"
+    },
+    {
+      "id": 340,
+      "type": "mlakjdf",
+      "titre": "mlkjqsdf",
+      "date": "2024-04-03T23:00:00.000Z",
+      "lien": "mljkjqsdfmlkj",
+      "auteur": "qmlzdkfj",
+      "createdDate": "2024-04-03T12:27:00.573Z"
+    },
+    {
+      "id": 501,
+      "type": "mlkjqsdf",
+      "titre": "mlkjqsdfmlkj",
+      "date": "2024-04-03T23:00:00.000Z",
+      "lien": "mlkjsdqfmlk",
+      "auteur": "qsdfqsdf",
+      "createdDate": "2024-04-03T12:30:20.330Z"
     }
   ]
 }

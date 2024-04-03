@@ -47,9 +47,12 @@ export class ArticleFormComponent implements OnInit{
     this.form = new FormGroup({
       type: new FormControl(null, [Validators.required]),
       titre: new FormControl(null, [Validators.required]),
+      date: new FormControl(null, [Validators.required]),
+      lien: new FormControl(null, [Validators.required]),
+      auteur: new FormControl(null, [Validators.required]),
     })
   }
-/*
+
   onSubmit() {
 
     if(!!this.idCourant)
@@ -66,13 +69,16 @@ export class ArticleFormComponent implements OnInit{
       })
     }
   }
-  */
+
 
 
   private editForm(a: Article) {
     this.form = new FormGroup({
       type: new FormControl(a.type, [Validators.required]),
-      article: new FormControl(a.titre, [Validators.required]),
+      titre: new FormControl(a.titre, [Validators.required]),
+      date: new FormControl(a.date, [Validators.required]),
+      lien: new FormControl(a.lien, [Validators.required]),
+      auteur: new FormControl(a.auteur, [Validators.required]),
     })
   }
 

@@ -1,5 +1,9 @@
-<form [formGroup]="form" >
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <legend>Create Article</legend>
+  <mat-form-field>
+    <mat-label>auteur</mat-label>
+    <input matInput formControlName="auteur">
+  </mat-form-field>
   <mat-form-field>
     <mat-label>type</mat-label>
     <input matInput formControlName="type">
@@ -8,10 +12,21 @@
     <mat-label>titre</mat-label>
     <input matInput formControlName="titre">
   </mat-form-field>
+  <mat-form-field>
+    <mat-label>lien</mat-label>
+    <input matInput formControlName="lien">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
   <br>
   <mat-dialog-actions>
     <button class="mat-raised-button"(click)="close()">Close</button>
-    <button class="mat-raised-button mat-primary">Save</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
   </mat-dialog-actions>
 </form>
 

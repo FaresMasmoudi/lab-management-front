@@ -14,38 +14,31 @@ export class ArticleService {
 
   constructor(private httpClient: HttpClient) {
   }
-/*
+
   onSave(articleToSave: Article): Observable<any> {
     const Article = {
       ...articleToSave,
       id: Math.ceil(Math.random() * 1000),
       createdDate: new Date().toISOString()
     }
-    this.httpClient.post(this.base_url + '/articles', Article);
-  }*/
+    return this.httpClient.post(this.base_url + '/articles', Article);
+  }
 
   onUpdate(id: string, form: any): Observable<any> {
-    // this.httpClient.put('linktorestAPI',form);
-    const index = this.tab_articles.findIndex(item => item.id == id);
-    this.tab_articles[index] = {
-      id: id,
+    const updatedArticle = {
       ...form,
+      id: id,
       createdDate: new Date().toISOString()
     }
-    return new Observable(observer => observer.next());
+    return this.httpClient.put(`${this.base_url}/articles/${id}`, updatedArticle);
   }
 
   onDelete(id: string): Observable<any> {
-    //return this.httpClient.delete('127.0.0.1:8080/api/member/$(id)');
-    this.tab_articles = this.tab_articles.filter(item => item.id != id)
-    return new Observable(observer => observer.next())
+    return this.httpClient.delete(`${this.base_url}/articles/${id}`);
   }
 
   getArticleById(idCourant: string): Observable<Article> {
-    //return this.httpClient.get<Member>(`127.0.0.1:8080/api/member/$(id)}`)
-    return new Observable(observer =>
-      observer.next(this.tab_articles.filter(item => item.id == idCourant) [0] ?? null))
-
+    return this.httpClient.get<Article>(`${this.base_url}/articles/${idCourant}`);
   }
 
   getArticles(): Observable<Article[]> {

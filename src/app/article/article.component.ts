@@ -21,7 +21,7 @@ export class ArticleComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  displayedColumns: string[] = ['id', 'type', 'titre', 'createdDate'];
+  displayedColumns: string[] = ['id', 'type', 'titre', 'date', 'auteur', 'lien', 'actions'];
   dataSource = new MatTableDataSource<any>();
   tabArticles:Article[]= [];
   getAllData(){
@@ -85,14 +85,13 @@ export class ArticleComponent implements AfterViewInit {
       type: "scientifique",
       title: 'Angular For Beginners'
     };
-/*
+
     const dialogRef = this.dialog.open(ArticleFormComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
       data => this.articleService.onSave(data)
     );
 
- */
   }
 
 }
